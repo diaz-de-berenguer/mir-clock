@@ -1,2 +1,30 @@
-<h1>Home#home</h1>
-<p>Find me in app/views/home/home.html.erb</p>
+
+			<%= simple_form_for :clock do |f| %>
+
+				<div class="row">
+					<div class="col-12">
+						<%= f.input :employees, as: :select, label: false, #include_blank: false,
+						    collection: Employee.order(:name).map{ |e| [e.name, e.id] },
+						    autofocus: true, input_html: { class: "chosen-select", data: { placeholder: "Select your name" } } %>
+					</div>
+				</div><!-- row -->
+
+				<div class="row">
+					<div class="col-6">
+						<%= button_tag type: 'submit', class: 'btn btn-primary btn-block' do %>
+							<h1 style="margin:10px;font-weight:400;">Clock In</h1>
+						<% end %>
+					</div>
+					<div class="col-6">
+						<%= button_tag type: 'submit', class: 'btn btn-warning btn-block' do %>
+							<h1 style="margin:10px;font-weight:400;">Clock Out</h1>
+						<% end %>
+					</div>
+				</div><!-- row -->
+
+			<% end # simple_form %>
+
+<script>
+	$('.chosen-select').chosen({
+	});
+</script>

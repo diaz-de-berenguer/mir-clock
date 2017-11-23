@@ -38,6 +38,8 @@ gem 'bootstrap', '~> 4.0.0.beta2.1'
 # Simple Form
 gem 'simple_form'
 
+gem 'chosen-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
