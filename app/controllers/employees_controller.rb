@@ -11,7 +11,10 @@ class EmployeesController < ApplicationController
   # GET /employees/1
   # GET /employees/1.json
   def show
-    redirect_to employees_url
+    respond_to do |f|
+      f.html { redirect_to employees_url }
+      f.xls { send_data @employee.time_as_csv, filename: "#{@employee.name} - time as of #{Time.now.strftime('%x')}.xls" }
+    end
   end
 
   # GET /employees/new
