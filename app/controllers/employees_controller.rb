@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  http_basic_authenticate_with name: ENV["c_username"], password: ENV["c_password_admin"]
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
 
   # GET /employees

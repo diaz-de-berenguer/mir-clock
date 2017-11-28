@@ -34,16 +34,15 @@
 </div>
 
 <script>
-	$('.chosen-select').chosen();
+	document.addEventListener("turbolinks:load", function() {
+		$('.chosen-select').chosen({
+			width: "100%"
+		});
 
-	// var d  = new Date();
-	// var tz = d.toString().split("GMT")[1].split(" (")[0];
-	// var tz = d.toString().split("(")[1].split(")")[0]
-	$('#clock-form').on('submit', function() {
-		// var tzRe = /\(([\w\s]+)\)/; // Look for "(", any words (\w) or spaces (\s), and ")"
-		var d    = new Date().toString();
-		// var tz   = tzRe.exec(d)[1]; // timezone, i.e. "Pacific Daylight Time"
-		console.log(d);
-		$('.local-time').val(d);
+		$('#clock-form').on('submit', function() {
+			var d = new Date().toString();
+			$('.local-time').val(d);
+		});
 	});
+
 </script>
