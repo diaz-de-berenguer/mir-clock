@@ -5,12 +5,13 @@ class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.all
+    @employees = Employee.active
   end
 
   # GET /employees/1
   # GET /employees/1.json
   def show
+    redirect_to employees_url
   end
 
   # GET /employees/new
@@ -55,7 +56,7 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1
   # DELETE /employees/1.json
   def destroy
-    @employee.destroy
+    @employee.update(removed: true)
     respond_to do |format|
       format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
       format.json { head :no_content }

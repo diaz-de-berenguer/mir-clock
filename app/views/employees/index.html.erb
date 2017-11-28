@@ -1,27 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div class="container" style="padding-bottom:100px">
+  <%= link_to root_path, class: "pull-right" do %>
+    <%= fa_icon "home" %>
+    Back
+  <% end %>
+    <h1>Employees</h1>
 
-<h1>Employees</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @employees.each do |employee| %>
-      <tr>
-        <td><%= employee.name %></td>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <hr>
+      <div class="row">
+        <div class="col-7">
+          <h4>
+            <%= fa_icon "user-circle" %>
+            <%= employee.name %>
+          </h4>
+        </div>
+        <div class="col-2">
+          <%= link_to '#' do %>
+            <%= fa_icon "download" %>
+            Time
+          <% end %>
+        </div>
+        <div class="col-2">
+          <%= link_to edit_employee_path(employee) do %>
+            <%= fa_icon "cog" %>
+            Edit
+          <% end %>
+        </div>
+        <div class="col-1">
+          <%= link_to employee, method: :delete, data: { confirm: "Are you sure you want to remove #{employee.name}?" } do %>
+            <%= fa_icon "times", style: "color:red;" %>
+          <% end %>
+          </div>
+      </div>
+
     <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Employee', new_employee_path %>
+    <hr>
+    <%= link_to new_employee_path do %>
+      <h4 class="pull-left">
+        <%= fa_icon "plus" %>
+        New
+      </h4>
+    <% end %>
+</div>

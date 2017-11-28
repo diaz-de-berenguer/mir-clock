@@ -1,35 +1,41 @@
-<%= simple_form_for :clock, url: clocks_path, data: { remote: true },
-    html: { id: "clock-form" } do |f| %>
 
-	<div class="row">
-		<div class="col-12">
-			<%= f.hidden_field :local_time, class: "local-time" %>
-			<%= f.input :employee_id, as: :select, label: false, #include_blank: false,
-			    collection: Employee.order(:name).map{ |e| [e.name, e.id] },
-			    autofocus: true, input_html: { class: "chosen-select", data: { placeholder: "Select your name" } } %>
+<div class="row justify-content-md-center align-items-center" style="height:100%">
+	<div class="col-md-8">
+
+		<%= simple_form_for :clock, url: clocks_path, data: { remote: true },
+		    html: { id: "clock-form" } do |f| %>
+
+			<div class="row">
+				<div class="col-12">
+					<%= f.hidden_field :local_time, class: "local-time" %>
+					<%= f.input :employee_id, as: :select, label: false, #include_blank: false,
+					    collection: @employees.map{ |e| [e.name, e.id] },
+					    autofocus: true, input_html: { class: "chosen-select", data: { placeholder: "Select your name" } } %>
+				</div>
+			</div><!-- row -->
+
+			<div class="row">
+				<div class="col-6">
+					<%= button_tag type: 'submit', class: 'btn btn-primary btn-block', name: 'in' do %>
+						<h2 style="margin:10px;font-weight:400;">Clock In</h2>
+					<% end %>
+				</div>
+				<div class="col-6">
+					<%= button_tag type: 'submit', class: 'btn btn-warning btn-block', name: 'out' do %>
+						<h2 style="margin:10px;font-weight:400;">Clock Out</h2>
+					<% end %>
+				</div>
+			</div><!-- row -->
+
+		<% end # simple_form %>
+
+		<div class="row" style="padding-top:100px;margin-bottom:-100px;">
+			<div class="col-12" style="text-align:right;" >
+				<%= link_to employees_path, style: "color:#aaa" do %>
+					Admin
+				<% end %>
+			</div>
 		</div>
-	</div><!-- row -->
-
-	<div class="row">
-		<div class="col-6">
-			<%= button_tag type: 'submit', class: 'btn btn-primary btn-block', name: 'in' do %>
-				<h2 style="margin:10px;font-weight:400;">Clock In</h2>
-			<% end %>
-		</div>
-		<div class="col-6">
-			<%= button_tag type: 'submit', class: 'btn btn-warning btn-block', name: 'out' do %>
-				<h2 style="margin:10px;font-weight:400;">Clock Out</h2>
-			<% end %>
-		</div>
-	</div><!-- row -->
-
-<% end # simple_form %>
-
-<div class="row" style="padding-top:100px;margin-bottom:-100px;">
-	<div class="col-12" style="text-align:right;" >
-		<%= link_to employees_path, style: "color:#aaa" do %>
-			Admin
-		<% end %>
 	</div>
 </div>
 

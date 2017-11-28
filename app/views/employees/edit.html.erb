@@ -1,6 +1,6 @@
-<h1>Editing Employee</h1>
+<div class="container">
+		<%= link_to 'Cancel', employees_path, class: "pull-right" %>
+		<h1>Editing Employee</h1>
 
-<%= render 'form', employee: @employee %>
-
-<%= link_to 'Show', @employee %> |
-<%= link_to 'Back', employees_path %>
+		<%= render 'form', employee: @employee %>
+</div>

@@ -40,6 +40,7 @@ gem 'simple_form'
 
 gem 'chosen-rails'
 gem "figaro"
+gem "font-awesome-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
