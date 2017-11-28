@@ -1,30 +1,49 @@
+<%= simple_form_for :clock, url: clocks_path, data: { remote: true },
+    html: { id: "clock-form" } do |f| %>
 
-			<%= simple_form_for :clock do |f| %>
+	<div class="row">
+		<div class="col-12">
+			<%= f.hidden_field :local_time, class: "local-time" %>
+			<%= f.input :employee_id, as: :select, label: false, #include_blank: false,
+			    collection: Employee.order(:name).map{ |e| [e.name, e.id] },
+			    autofocus: true, input_html: { class: "chosen-select", data: { placeholder: "Select your name" } } %>
+		</div>
+	</div><!-- row -->
 
-				<div class="row">
-					<div class="col-12">
-						<%= f.input :employees, as: :select, label: false, #include_blank: false,
-						    collection: Employee.order(:name).map{ |e| [e.name, e.id] },
-						    autofocus: true, input_html: { class: "chosen-select", data: { placeholder: "Select your name" } } %>
-					</div>
-				</div><!-- row -->
+	<div class="row">
+		<div class="col-6">
+			<%= button_tag type: 'submit', class: 'btn btn-primary btn-block', name: 'in' do %>
+				<h2 style="margin:10px;font-weight:400;">Clock In</h2>
+			<% end %>
+		</div>
+		<div class="col-6">
+			<%= button_tag type: 'submit', class: 'btn btn-warning btn-block', name: 'out' do %>
+				<h2 style="margin:10px;font-weight:400;">Clock Out</h2>
+			<% end %>
+		</div>
+	</div><!-- row -->
 
-				<div class="row">
-					<div class="col-6">
-						<%= button_tag type: 'submit', class: 'btn btn-primary btn-block' do %>
-							<h1 style="margin:10px;font-weight:400;">Clock In</h1>
-						<% end %>
-					</div>
-					<div class="col-6">
-						<%= button_tag type: 'submit', class: 'btn btn-warning btn-block' do %>
-							<h1 style="margin:10px;font-weight:400;">Clock Out</h1>
-						<% end %>
-					</div>
-				</div><!-- row -->
+<% end # simple_form %>
 
-			<% end # simple_form %>
+<div class="row" style="padding-top:100px;margin-bottom:-100px;">
+	<div class="col-12" style="text-align:right;" >
+		<%= link_to employees_path, style: "color:#aaa" do %>
+			Admin
+		<% end %>
+	</div>
+</div>
 
 <script>
-	$('.chosen-select').chosen({
+	$('.chosen-select').chosen();
+
+	// var d  = new Date();
+	// var tz = d.toString().split("GMT")[1].split(" (")[0];
+	// var tz = d.toString().split("(")[1].split(")")[0]
+	$('#clock-form').on('submit', function() {
+		// var tzRe = /\(([\w\s]+)\)/; // Look for "(", any words (\w) or spaces (\s), and ")"
+		var d    = new Date().toString();
+		// var tz   = tzRe.exec(d)[1]; // timezone, i.e. "Pacific Daylight Time"
+		console.log(d);
+		$('.local-time').val(d);
 	});
 </script>
